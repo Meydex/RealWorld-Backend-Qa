@@ -1,0 +1,24 @@
+{
+  "name": "realworld-backend-test",
+  "version": "1.0.0",
+  "description": "cd productionready-django-api\r ## 2- entrar no ambiente\r .\\env\\Scripts\\Activate.ps1 > entrar no  ambiente\r ## 3- rodar servidor local\r python manage.py runserver > rodar servidor",
+  "main": "run-tests.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Meydex/RealWorld-Backend-Qa.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Meydex/RealWorld-Backend-Qa/issues"
+  },
+  "homepage": "https://github.com/Meydex/RealWorld-Backend-Qa#readme",
+  "devDependencies": {
+    "newman": "^6.2.1"
+  }
+}

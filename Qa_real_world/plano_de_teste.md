@@ -24,6 +24,7 @@
     - Teste de validação de dados: Conferência de respostas JSON e integridade das informações
     - Teste de valor limite: Explorar limites de caracteres permitidos
     - Teste de autenticação: Login e geração de Token
+    - Teste de performace: Simular carga nas endpoints mais utilizadas (articles/login)
 
     - Critérios de sucesso: Todas as funcionalidades devem retornar os status HTTP corretos e manter a integridade dos dados conforme esperado
 
@@ -34,6 +35,7 @@
         Backend: Django 1.10.5 + SQLite3
         Execução da API: Localhost (127.0.0.1:8000)
     - Ferramentas:
+         K6
          Markdown
          Postman
          Vs code
@@ -64,10 +66,6 @@ Falta de cobertura de testes manuais ou automatizados em casos limites
 
 -Testes automatizados não cobrem interface gráfica (UI):
     -O foco dos testes é a API (camada backend)
-
--Sem testes de desempenho:
-    -Este plano não inclui testes de carga na API (ex: 1000 logins simultâneos)
-
 
 -Cobertura parcial de testes negativos:
     -Alguns cenários negativos foram priorizados (ex: login sem senha), mas nem todos os fluxos inválidos foram testados ainda (ex: bio com emojis ou imagens inválidas)

@@ -25,8 +25,16 @@ Resultado Esperado:
     -Código de status 200 ok
     -Retorno contendo dados do perfil: username, bio, image, following
 
+Cenários Negativos:
+    -usuário inexistente:
+        -Código 404 Bad Request
+        -Mensagem: 'A profile with this username does not exist.'
+
+
 
 Prioridade: Alto
+
+Teste: Manual
 
 Resultados do teste:
  -Status: Sucesso 
@@ -66,7 +74,7 @@ Resultado Esperado:
     -Código de status 201 Created
     -JSON com o campo "following": true
 
-Cenários Alternativos:
+Cenários Negativos:
     -Seguir a si mesmo:
         -Código 400 Bad Request
         -Mensagem: 'You can not follow yourself.'
@@ -77,6 +85,8 @@ Cenários Alternativos:
 
 
 Prioridade: Alto
+
+Teste: Automatizado
 
 Resultados do teste:
  -Status: Sucesso 
@@ -110,12 +120,15 @@ Resultado Esperado:
     -Código 200 OK
     -JSON com o campo "following": false
 
-Cenário Alternativo (usuário não existe):
-    -Código 404 Not Found
-    -Mensagem: 'A profile with this username was not found.'
+Cenário negativo:
+    -Usuário não  existe:
+        -Código 404 Not Found
+        -Mensagem: 'A profile with this username was not found.'
 
 
 Prioridade: Alto
+
+Teste: Automatizado
 
 Resultados do teste:
  -Status: Sucesso 

@@ -31,6 +31,13 @@ Resultado Esperado:
     -Retorno JSON com os dados do usuário e token
 
 Cenários Negativos:
+    -Tentar cadaastro sem username:
+    -Código de status  400 bad request
+
+    -Usuário já cadastrado:
+    -código de status  400 bad request
+
+
     -Password com menos de 8 caracteres:
     -Entrada inválida:
         -Password: 1234567
@@ -42,6 +49,8 @@ Cenários Negativos:
     -Código de status 400 bad request
 
 Prioridade: Alto
+
+Teste: Automatizado
 
 Resultados do teste:
  -Status: Sucesso 
@@ -87,6 +96,8 @@ Cenários Negativos:
 
 Prioridade: Alto
 
+Teste: Automatizado
+
 Resultados do teste:
  -Status: Sucesso 
  -Descrição: O sistema se comportou como esperado
@@ -120,6 +131,8 @@ Passos:
     -Validar se os campos foram atualizados
 
 Prioridade: Alto
+
+Teste: Manual
 
 Resultados do teste:
  -Status: Sucesso 

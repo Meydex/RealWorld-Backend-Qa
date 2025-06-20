@@ -1,0 +1,1020 @@
+{
+	"info": {
+		"_postman_id": "bc6ab50d-af4e-445b-9369-ab70d90a8b9f",
+		"name": "articles",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44429857",
+		"_collection_link": "https://me3333-4984.postman.co/workspace/RealWorld-Backend-API-Tests~7a26bd60-5a94-4537-b693-a23ef0ba1bdd/collection/44429857-bc6ab50d-af4e-445b-9369-ab70d90a8b9f?action=share&source=collection_link&creator=44429857"
+	},
+	"item": [
+		{
+			"name": "CT-007 criar artigo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201 created\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"resposta contém, Title, Description, body, Autor\", function () {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json.article).to.have.property(\"title\");\r",
+							"    pm.expect(json.article).to.have.property(\"description\");\r",
+							"    pm.expect(json.article).to.have.property(\"body\");\r",
+							"    pm.expect(json.article).to.have.property(\"author\");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzU0NDg1OTE0fQ.5tOdJ-x8o_QsZbarmbyxg1OxmU-lAYq8koDypFpSPWU",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"article\":{\r\n    \"title\": \"teste\",\r\n    \"description\": \"A test description\",\r\n    \"body\": \"Test body\",\r\n    \"autor\": \"novo_user1\" \r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/articles",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"articles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CT-008 - Visualizar Artigos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 ok\"), function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"};\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    const json = pm.response.json();\r",
+							"    json.articles.forEach(article => {\r",
+							"        pm.expect(article).to.have.property(\"author\");\r",
+							"        pm.expect(article.author).to.have.property(\"username\");\r",
+							"        pm.expect(article).to.have.property(\"body\");\r",
+							"        pm.expect(article).to.have.property(\"createdAt\");\r",
+							"        pm.expect(article).to.have.property(\"title\");\r",
+							"        pm.expect(article).to.have.property(\"updatedAt\");\r",
+							"        \r",
+							"    });\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/articles",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"articles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CT-009 - Visualizar Artigos do feed follow",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    });\r",
+							"\r",
+							"pm.test(\"Resposta retorna artigos\", function () {\r",
+							"    const json = pm.response.json();\r",
+							"    json.articles.forEach(article => {\r",
+							"        pm.expect(article).to.have.property(\"author\");\r",
+							"        pm.expect(article.author).to.have.property(\"username\");\r",
+							"        pm.expect(article.author.following).to.be.true;\r",
+							"        pm.expect(article).to.have.property(\"body\");\r",
+							"        pm.expect(article).to.have.property(\"createdAt\");\r",
+							"        pm.expect(article).to.have.property(\"description\");\r",
+							"        pm.expect(article).to.have.property(\"title\");\r",
+							"    })\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNzU1Mzc0NDI5fQ.sXnIxp5c8sgfKBODWe7Agg0yLfwFqrccoDlSpigsxLQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/articles/feed/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"articles",
+						"feed",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CT-010 - Visualizar Artigos  por slug",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Resposta body deve conter a propriedade 'article'\", function () {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json).to.have.property(\"article\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/articles/teste-zt0yod",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"articles",
+						"teste-zt0yod"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CT-010 - Visualizar Artigos  por slug inexistente (negativio)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404 not found\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"pm.test(\"mensagem: artigo com esse slug não existe'\", function () {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json).to.have.property(\"errors\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/articles/teste",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"articles",
+						"teste"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CT-011 - Atualizar Artigo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"resposta contém, Title, Description, body, Autor\", function () {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json.article).to.have.property(\"title\");\r",
+							"    pm.expect(json.article).to.have.property(\"description\");\r",
+							"    pm.expect(json.article).to.have.property(\"body\");\r",
+							"    pm.expect(json.article).to.have.property(\"author\");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzU0NDg1OTE0fQ.5tOdJ-x8o_QsZbarmbyxg1OxmU-lAYq8koDypFpSPWU",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"article\":{\r\n    \"title\": \"novo teste\",\r\n    \"description\": \"A new test description\",\r\n    \"body\": \"New Test body\",\r\n    \"autor\": \"novo_user1\" \r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/articles/teste-zt0yod",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"articles",
+						"teste-zt0yod"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CT-011 - Tentar Atualizar Artigo inexistente (negativo)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404 not found\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Mensagem: artigo com esse slug não existe\", function () {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json).to.have.property(\"errors\");\r",
+							"   \r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzU0NDg1OTE0fQ.5tOdJ-x8o_QsZbarmbyxg1OxmU-lAYq8koDypFpSPWU",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"article\":{\r\n    \"title\": \"novo teste\",\r\n    \"description\": \"A new test description\",\r\n    \"body\": \"New Test body\",\r\n    \"autor\": \"novo_user1\" \r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/articles/teste-zt0yo",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"articles",
+						"teste-zt0yo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CT-012 - Favoritar Artigo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201 Created\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Resposta contém artigo atualizado\", function () {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json.article).to.have.property(\"title\");\r",
+							"    pm.expect(json.article.favorited).to.be.true\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNzU1Mzc0NDI5fQ.sXnIxp5c8sgfKBODWe7Agg0yLfwFqrccoDlSpigsxLQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/articles/teste-zt0yod/favorite/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"articles",
+						"teste-zt0yod",
+						"favorite",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CT-012 -Tentar Favoritar Artigo inexistente (negativo)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404 not found\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"mensagem: artigo com esse slug não existe\", function () {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json).to.have.property(\"errors\")\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNzU1Mzc0NDI5fQ.sXnIxp5c8sgfKBODWe7Agg0yLfwFqrccoDlSpigsxLQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/articles/teste-zt0yo/favorite/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"articles",
+						"teste-zt0yo",
+						"favorite",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CT-013 - Desfavoritar Artigo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Resposta contém artigo favoritado como falso\", function () {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json.article.favorited).to.be.false;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNzU1Mzc0NDI5fQ.sXnIxp5c8sgfKBODWe7Agg0yLfwFqrccoDlSpigsxLQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/articles/teste-zt0yod/favorite/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"articles",
+						"teste-zt0yod",
+						"favorite",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CT-013 -Tentar Desfavoritar Artigo inexistente (negativo)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404 not found\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Mensagem: artigo com esse slug não encontrado\", function () {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json).to.have.property(\"errors\")\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNzU1Mzc0NDI5fQ.sXnIxp5c8sgfKBODWe7Agg0yLfwFqrccoDlSpigsxLQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/articles/teste-zt0yo/favorite/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"articles",
+						"teste-zt0yo",
+						"favorite",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CT-014 - Adicionar Comentário a Artigo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201 Created\"), function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"};\r",
+							"\r",
+							"pm.test(\"Response body contains commentsCount and comments\"), function () {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json).to.have.property(\"comments\");\r",
+							"    pm.expect(json.comment).to.have.property(\"id\");\r",
+							"    pm.expect(json.comment).to.have.property(\"author\");\r",
+							"    pm.expect(json.comment).to.have.property(\"body\");\r",
+							"    pm.expect(json.comment).to.have.property(\"createdAt\");\r",
+							"    pm.expect(json.comment).to.have.property(\"updatedAt\")\r",
+							"    pm.expect(json.comment.body).to.eql(\"comentário no artigo\")\r",
+							"\r",
+							"};"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzU0NDg1OTE0fQ.5tOdJ-x8o_QsZbarmbyxg1OxmU-lAYq8koDypFpSPWU",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"comment\": {\r\n    \"body\": \"comentário no artigo\"\r\n  }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/articles/teste-zt0yod/comments",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"articles",
+						"teste-zt0yod",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CT-014 - Adicionar Comentário a Artigo slug inválido (negativo)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404 Not Found\"), function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"};\r",
+							"\r",
+							"pm.test(\"mensagem: artigo com esse slug não existe\"), function () {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json).to.have.property(\"errors\");\r",
+							"};"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzU0NDg1OTE0fQ.5tOdJ-x8o_QsZbarmbyxg1OxmU-lAYq8koDypFpSPWU",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"comment\": {\r\n    \"body\": \"comentário no artigo\"\r\n  }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/articles/teste-zt0yo/comments",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"articles",
+						"teste-zt0yo",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CT-015 - Listar Comentários de um Artigo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    const json = pm.response.json();\r",
+							"    json.comments.forEach(comment =>{\r",
+							"         pm.expect(comment).to.have.property(\"id\");\r",
+							"         pm.expect(comment).to.have.property(\"author\");\r",
+							"         pm.expect(comment).to.have.property(\"body\");\r",
+							"         pm.expect(comment).to.have.property(\"createdAt\");\r",
+							"         pm.expect(comment).to.have.property(\"updatedAt\");\r",
+							"    });\r",
+							"   \r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/articles/teste-zt0yod/comments",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"articles",
+						"teste-zt0yod",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CT-015 - Listar Comentários de um Artigo slug inválido (negativo)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404 Not Found\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Resposta deve conter o campo 'errors'\", function () {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json).to.have.property('errors');\r",
+							"    });\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/articles/teste-zt0y/comments",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"articles",
+						"teste-zt0y",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CT-016 - Remover Comentário",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204 No Content\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"    });\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzU0NDg1OTE0fQ.5tOdJ-x8o_QsZbarmbyxg1OxmU-lAYq8koDypFpSPWU",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/articles/teste-zt0yod/comments/5",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"articles",
+						"teste-zt0yod",
+						"comments",
+						"5"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "CT-016 - Remover Comentário",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzU0NDg1OTE0fQ.5tOdJ-x8o_QsZbarmbyxg1OxmU-lAYq8koDypFpSPWU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/articles/teste-zt0yod/comments/5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"articles",
+								"teste-zt0yod",
+								"comments",
+								"5"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "CT-016 - Remover Comentário inesistente (negativo)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404 Not Found\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"    });\r",
+							"\r",
+							"pm.test(\"Mensagem de erro, comentário com esse id não existe\", function () {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json).to.have.property(\"errors\")\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzU0NDg1OTE0fQ.5tOdJ-x8o_QsZbarmbyxg1OxmU-lAYq8koDypFpSPWU",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/articles/teste-zt0yo/comments/99999",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"articles",
+						"teste-zt0yo",
+						"comments",
+						"99999"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CT-017 - Listar Tags Disponíveis",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 Ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body contains 'tags' property\", function () {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json).to.have.property('tags');\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/tags/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"tags",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

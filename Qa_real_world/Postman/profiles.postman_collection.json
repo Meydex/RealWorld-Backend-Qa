@@ -1,0 +1,358 @@
+{
+	"info": {
+		"_postman_id": "3146fd21-e6a3-4f93-ba4b-2c0b58b27372",
+		"name": "profiles",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44429857",
+		"_collection_link": "https://me3333-4984.postman.co/workspace/RealWorld-Backend-API-Tests~7a26bd60-5a94-4537-b693-a23ef0ba1bdd/collection/44429857-3146fd21-e6a3-4f93-ba4b-2c0b58b27372?action=share&source=collection_link&creator=44429857"
+	},
+	"item": [
+		{
+			"name": "CT-004 - Visualizar perfil de Usuário",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Código de status 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Resposta contém username, bio, image e following\", function () {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json.profile).to.have.property(\"username\");\r",
+							"    pm.expect(json.profile).to.have.property(\"bio\");\r",
+							"    pm.expect(json.profile).to.have.property(\"image\");\r",
+							"    pm.expect(json.profile).to.have.property(\"following\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/profiles/outroUsuário/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"profiles",
+						"outroUsuário",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CT-004 - Visualizar perfil de Usuário inexistente (negativo)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Código de status 404 bad request\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"menssagem de erro: esse campo não pode estar vazio\", function () {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json).to.have.property(\"errors\");\r",
+							"    pm.expect(json.errors).to.have.property(\"profile\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/profiles/outroUsuário1/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"profiles",
+						"outroUsuário1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CT-005 - Seguir Usuário",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 201 created\") , function   () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"}\r",
+							"pm.test(\"seguir usuário\") , function () {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json.profile.following.to.be.true);\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNzU1Mzc0NDI5fQ.sXnIxp5c8sgfKBODWe7Agg0yLfwFqrccoDlSpigsxLQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/profiles/novo_user1/follow/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"profiles",
+						"novo_user1",
+						"follow",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CT-005 - Seguir a si mesmo (negativo)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 400 bad request\") , function   () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"}\r",
+							"pm.test(\"mensagem: voce não pode seguir a sí mesmo\") , function () {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json).to.have.property('errors')\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzU0NDg1OTE0fQ.5tOdJ-x8o_QsZbarmbyxg1OxmU-lAYq8koDypFpSPWU",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/profiles/novo_user1/follow/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"profiles",
+						"novo_user1",
+						"follow",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CT-005 - Seguir Usuário inexistente (negativo)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 404 not found\") , function   () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"}\r",
+							"pm.test(\"mensagem de erro: perfil com esse username não existe\") , function () {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json).to.have.property(\"errors\")\r",
+							";}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzU0NDg1OTE0fQ.5tOdJ-x8o_QsZbarmbyxg1OxmU-lAYq8koDypFpSPWU",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/profiles/outroUsuário1/follow/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"profiles",
+						"outroUsuário1",
+						"follow",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CT-006 - Deixar de Seguir Usuário",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 200 OK\") , function (){\r",
+							"    pm.response.to.have.status(200);\r",
+							"}\r",
+							"\r",
+							"pm.test(\"deixar de seguir usuário\") , function () {\r",
+							"    pm.expect(pm.response.json().profile.following.to.be.false);\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzU0NDg1OTE0fQ.5tOdJ-x8o_QsZbarmbyxg1OxmU-lAYq8koDypFpSPWU",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/profiles/outroUsuário/follow/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"profiles",
+						"outroUsuário",
+						"follow",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CT-006 - Deixar de Seguir Usuário  inexistente (negativo)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 404 not found\") , function (){\r",
+							"    pm.response.to.have.status(404);\r",
+							"}\r",
+							"\r",
+							"pm.test(\"mensagem de error: perfil com esse usuário não existe\"), function () {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json).to.have.property(\"erros\")\r",
+							"    pm.expect(json.errors.detail).to.eql(\"A profile with this username was not found.\");\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzU0NDg1OTE0fQ.5tOdJ-x8o_QsZbarmbyxg1OxmU-lAYq8koDypFpSPWU",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/profiles/outroUsuário1/follow/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"profiles",
+						"outroUsuário1",
+						"follow",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

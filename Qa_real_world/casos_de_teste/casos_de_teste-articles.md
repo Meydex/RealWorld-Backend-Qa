@@ -42,6 +42,8 @@ Resultado Esperado:
 
 Prioridade: Alto
 
+Teste: Automatizado
+
 Resultados do teste:
  -Status: Sucesso 
  -Descrição: O sistema se comportou como esperado
@@ -55,7 +57,7 @@ Endpoint:
     -GET /api/articles/feed/
 
 Permissões: 
-    -AllowAny
+    -Allowany
 
 Pré-condições:
     -Ambiente virtual ativado (venv)
@@ -76,6 +78,8 @@ Resultado Esperado:
 
 Prioridade: Alto
 
+Teste: Automatizado
+
 Resultados do teste:
  -Status: Sucesso 
  -Descrição: O sistema se comportou como esperado
@@ -83,11 +87,43 @@ Resultados do teste:
 
 evidências:
 
-
-**CT-009 - Visualizar Artigo por Slug**
+**CT-009 - Visualizar Artigo do Feed**
 
 Endpoint:
-    -GET /api/articles/<slug>/
+    -GET /api/articles/feed/
+
+Permissões: 
+    -IsAuthenticated
+
+Pré-condição:
+    -Ambiente virtual ativado (venv)
+    -API rodando localmente no endpoint http://127.0.0.1:8000
+    -Postman configurado 
+
+Passos:
+    -Enviar GET com um slug válido
+    -Verificar os dados retornados
+
+Resultado Esperado:
+    -Código 200 OK
+    -Retorno com os dados completos do artigo
+
+
+Prioridade: Alto
+
+Teste: Automatizado
+
+Resultados do teste:
+ -Status: Sucesso 
+ -Descrição: O sistema se comportou como esperado
+ -Observações: Todos os passos foram executados com êxito
+
+evidências:
+
+**CT-010 - Visualizar Artigo por Slug**
+
+Endpoint:
+    -GET /api/articles/<slug>
 
 Permissões: 
     -AllowAny
@@ -113,6 +149,8 @@ Cenário Alternativo:
 
 Prioridade: Alto
 
+Teste: Automatizado
+
 Resultados do teste:
  -Status: Sucesso 
  -Descrição: O sistema se comportou como esperado
@@ -121,10 +159,10 @@ Resultados do teste:
 evidências:
 
 
-**CT-010 - Atualizar Artigo**
+**CT-011 - Atualizar Artigo**
 
 Endpoint:
-    -PUT /api/articles/<slug>/
+    -PUT /api/articles/<slug>
 
 Permissões: 
     -IsAuthenticated
@@ -156,6 +194,8 @@ Cenário Alternativo:
 
 Prioridade: Alto
 
+Teste: Automatizado
+
 Resultados do teste:
  -Status: Sucesso 
  -Descrição: O sistema se comportou como esperado
@@ -164,7 +204,7 @@ Resultados do teste:
 evidências:
 
 
-**CT-011 - Favoritar Artigo**
+**CT-012 - Favoritar Artigo**
 
 Endpoint:
     -POST /api/articles/<slug>/favorite/
@@ -194,6 +234,7 @@ Cenário Alternativo:
 
 Prioridade: Alto
 
+Teste: Manual
 Resultados do teste:
  -Status: Sucesso 
  -Descrição: O sistema se comportou como esperado. 
@@ -202,7 +243,7 @@ Resultados do teste:
 evidências:
 
 
-**CT-012 - Desfavoritar Artigo**
+**CT-013 - Desfavoritar Artigo**
 
 Endpoint:
     -DELETE /api/articles/<slug>/favorite/
@@ -232,6 +273,7 @@ Cenário Alternativo:
 
 Prioridade: Alto
 
+Teste: Manual
 Resultados do teste:
  -Status: Sucesso 
  -Descrição: O sistema se comportou como esperado
@@ -240,7 +282,7 @@ Resultados do teste:
 evidências:
 
 
-**CT-013 - Adicionar Comentário a Artigo**
+**CT-014 - Adicionar Comentário a Artigo**
 
 Endpoint:
     -POST /api/articles/<slug>/comments/
@@ -271,6 +313,8 @@ Cenário Alternativo:
 
 Prioridade: Alto
 
+Teste: Automatizado
+
 Resultados do teste:
  -Status: Sucesso 
  -Descrição: O sistema se comportou como esperado 
@@ -279,7 +323,7 @@ Resultados do teste:
 evidências:
 
 
-**CT-014 - Listar Comentários de um Artigo**
+**CT-015 - Listar Comentários de um Artigo**
 
 Endpoint:
     -GET /api/articles/<slug>/comments/
@@ -307,6 +351,8 @@ Cenário Alternativo:
 
 Prioridade: Alto
 
+Teste: Automatizado
+
 Resultados do teste:
  -Status: Sucesso 
  -Descrição: O sistema se comportou como esperado
@@ -315,7 +361,7 @@ Resultados do teste:
 evidências:
 
 
-**CT-015 - Remover Comentário**
+**CT-016 - Remover Comentário**
 
 Endpoint:
     -DELETE /api/articles/<slug>/comments/<comment_pk>/
@@ -345,6 +391,8 @@ Cenário Alternativo:
 
 Prioridade: Alto
 
+Teste: Automatizado
+
 Resultados do teste:
  -Status: Sucesso 
  -Descrição: O sistema se comportou como esperado
@@ -353,13 +401,13 @@ Resultados do teste:
 evidências:
 
 
-**CT-016 - Listar Tags Disponíveis**
+**CT-017 - Listar Tags Disponíveis**
 
 Endpoint:
     -GET /api/tags/
 
 Permissões: 
-    -IAllowAny
+    -AllowAny
 
 Pré-condição:
     -Ambiente virtual ativado (venv)
@@ -383,6 +431,7 @@ Cenário Alternativo:
 
 Prioridade: Alto
 
+Teste: Manual
 Resultados do teste:
  -Status: Sucesso 
  -Descrição: O sistema se comportou como esperado
