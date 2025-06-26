@@ -35,7 +35,9 @@ Cenários Negativos:
 
 Prioridade: Alta
 
-> O teste indicou que a API suporta pequenas cargas com estabilidade. A otimização de queries e cache pode melhorar o tempo de resposta em produção.
+**Resultado observvado**
+
+- O teste indicou que a API suporta pequenas cargas com estabilidade. A otimização de queries e cache pode melhorar o tempo de resposta em produção.
 
 
 **TP-002 - Teste de Carga com Escrita Simultânea**
@@ -81,5 +83,18 @@ Resultado Esperado:
 
   Prioridade: Alta
 
-  > O teste indicou que a API suporta pequenas cargas com estabilidade. A otimização de queries e cache pode melhorar o tempo de resposta em produção.
+**Resultado observado**
 
+- O servidor não suportou a carga de 10 usuários simultâneos ao realizar a ação de seguir usuários.
+- O comportamento esperado:
+  - Código: `201 Created`
+- Ocorreu, porém:
+  - Código: `500 Internal Server Error`
+
+**Impacto:**
+- Risco de indisponibilidade do recurso de “seguir usuário” sob múltiplas requisições concorrentes.
+- Possível falha em produção, comprometendo a experiência do usuário final em cenários de alta demanda.
+
+**Recomendações:**
+- Revisar o controle transacional do endpoint de follow/unfollow
+- Realizar testes adicionais com ambiente de banco de dados transacional (PostgreSQL ou MySQL), pois o SQLite pode sofrer mais com concorrência

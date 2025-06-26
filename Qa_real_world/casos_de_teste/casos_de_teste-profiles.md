@@ -41,8 +41,6 @@ Resultados do teste:
  -Descrição: O sistema se comportou como esperado
  -Observações: Todos os passos foram executados com êxito
 
-evidências:
-
 **CT-005 - Seguir Usuário**
 
 Endpoint:
@@ -93,8 +91,6 @@ Resultados do teste:
  -Descrição: O sistema se comportou como esperado
  -Observações: Todos os passos foram executados com êxito
 
-evidências:
-
 
 **CT-006 - Deixar de Seguir Usuário**
 
@@ -134,5 +130,3 @@ Resultados do teste:
  -Status: Sucesso 
  -Descrição: O sistema se comportou como esperado
  -Observações: Todos os passos foram executados com êxito
-
-evidências:

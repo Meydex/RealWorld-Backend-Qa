@@ -57,7 +57,6 @@ Resultados do teste:
  -Descrição: O sistema se comportou como esperado. 
  -Observações: Todos os passos foram executados com êxito
 
-evidências:
 
 **CT-002 - Login do Usuário**
 
@@ -103,7 +102,6 @@ Resultados do teste:
  -Descrição: O sistema se comportou como esperado
  -Observações: Todos os passos foram executados com êxito
 
-evidências:
 
 
 **CT-003 - Atualizar Perfil do Usuário**
@@ -138,5 +136,3 @@ Resultados do teste:
  -Status: Sucesso 
  -Descrição: O sistema se comportou como esperado
  -Observações: Todos os passos foram executados com êxito
-
-evidências:

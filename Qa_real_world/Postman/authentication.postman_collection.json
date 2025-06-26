@@ -8,7 +8,7 @@
 	},
 	"item": [
 		{
-			"name": "CT-001 - Registro de Usuário (positivo)",
+			"name": "CT-001 - Registro de Usuário",
 			"event": [
 				{
 					"listen": "test",
@@ -50,15 +50,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/users/",
-					"protocol": "http",
+					"raw": "{{post_url_auth}}/api/users/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{post_url_auth}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"users",
@@ -66,7 +61,59 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "CT-001 - Registro de Usuário",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"user\": {\r\n    \"username\": \"outroUsuário\",\r\n    \"email\": \"outro@email.com\",\r\n    \"password\": \"pass@word2\"\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{post_url_auth}}/api/users/",
+							"host": [
+								"{{post_url_auth}}"
+							],
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n  \"user\": {\r\n    \"username\": \"outroUsuário\",\r\n    \"email\": \"outro@email.com\",\r\n    \"password\": \"pass@word2\",\r\n    \"token\": \"{{token}}\"\r\n  }\r\n}\r\n"
+				}
+			]
 		},
 		{
 			"name": "CT-001 - Registro de Usuário sem username (negativo)",
@@ -83,6 +130,7 @@
 							"    const json = pm.response.json();\r",
 							"    pm.expect(json).to.have.property(\"errors\");\r",
 							"    pm.expect(json.errors).to.have.property(\"username\");\r",
+							"    pm.expect(json.errors.username).to.include(\"This field may not be blank.\");\r",
 							"    pm.expect(json.errors).to.have.property(\"email\")\r",
 							"});"
 						],
@@ -110,15 +158,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/users/",
-					"protocol": "http",
+					"raw": "{{get_url}}/api/users/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{get_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"users",
@@ -143,6 +186,7 @@
 							"    const json = pm.response.json();\r",
 							"    pm.expect(json).to.have.property(\"errors\");\r",
 							"    pm.expect(json.errors).to.have.property(\"password\");\r",
+							"    pm.expect(json.errors.password).to.include(\"This field may not be blank.\")\r",
 							"    pm.expect(json.errors).to.have.property(\"email\")\r",
 							"});"
 						],
@@ -170,15 +214,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/users/",
-					"protocol": "http",
+					"raw": "{{get_url}}/api/users/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{get_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"users",
@@ -203,6 +242,7 @@
 							"    const json = pm.response.json();\r",
 							"    pm.expect(json).to.have.property(\"errors\");\r",
 							"    pm.expect(json.errors).to.have.property(\"email\")\r",
+							"    pm.expect(json.errors.email).to.include(\"This field may not be blank.\")\r",
 							"});"
 						],
 						"type": "text/javascript",
@@ -229,15 +269,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/users/",
-					"protocol": "http",
+					"raw": "{{get_url}}/api/users/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{get_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"users",
@@ -262,6 +297,7 @@
 							"    const json = pm.response.json();\r",
 							"    pm.expect(json).to.have.property(\"errors\");\r",
 							"    pm.expect(json.errors).to.have.property(\"email\");\r",
+							"    pm.expect(json.errors.email).to.include(\"user with this email already exists.\");\r",
 							"});\r",
 							""
 						],
@@ -289,15 +325,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/users/",
-					"protocol": "http",
+					"raw": "{{get_url}}/api/users/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{get_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"users",
@@ -321,6 +352,7 @@
 							"pm.test(\"Mensagem de erro: senha deve conter no minimo 8 caracteres\", function () {\r",
 							"    const json = pm.response.json();\r",
 							"    pm.expect(json.errors).to.have.property(\"password\");\r",
+							"    pm.expect(json.errors.password[0]).to.include(\"Ensure this field has at least 8 characters\");\r",
 							"    pm.expect(json.errors).to.have.property(\"email\")\r",
 							"});\r",
 							""
@@ -349,15 +381,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/users/",
-					"protocol": "http",
+					"raw": "{{get_url}}/api/users/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{get_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"users",
@@ -396,6 +423,7 @@
 							"pm.test(\"Mensagem de erro: senha deve conter no maximo 128 caracteres\", function () {\r",
 							"    const json = pm.response.json();\r",
 							"    pm.expect(json.errors).to.have.property(\"password\");\r",
+							"    pm.expect(json.errors.password[0]).to.include(\"Ensure this field has no more than 128 characters\");\r",
 							"    pm.expect(json.errors).to.have.property(\"email\")\r",
 							"});\r",
 							""
@@ -424,15 +452,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/users/",
-					"protocol": "http",
+					"raw": "{{get_url}}/api/users/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{get_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"users",
@@ -443,7 +466,7 @@
 			"response": []
 		},
 		{
-			"name": "CT-002 - Login do Usuário (positivo)",
+			"name": "CT-002 - Login do Usuário",
 			"event": [
 				{
 					"listen": "test",
@@ -487,15 +510,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/users/login/",
-					"protocol": "http",
+					"raw": "{{post_url_auth}}/api/users/login/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{post_url_auth}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"users",
@@ -504,7 +522,61 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "CT-002 - Login do Usuário",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"user\": {\r\n    \"email\": \"outro@email.com\",\r\n    \"password\": \"pass@word2\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{post_url_auth}}/api/users/login/",
+							"host": [
+								"{{post_url_auth}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"login",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n  \"user\": {\r\n    \"email\": \"outro@email.com\",\r\n    \"username\": \"outro\",\r\n    \"token\": \"{{token}}\"\r\n    }\r\n}"
+				}
+			]
 		},
 		{
 			"name": "CT-002 - Login do Usuário sem email  (negativo)",
@@ -519,8 +591,7 @@
 							"\r",
 							"pm.test(\"mensagem de erro: email nescessário para fazer login \", function () {\r",
 							"    const json = pm.response.json();\r",
-							"    pm.expect(json.user).to.have.property(\"email\");\r",
-							"    pm.expect(json.errors.email[0]).to.eql(\"An email address is required to log in\");\r",
+							"    pm.expect(json.errors.email[0]).to.eql(\"This field may not be blank.\");\r",
 							"});\r",
 							""
 						],
@@ -549,15 +620,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/users/login/",
-					"protocol": "http",
+					"raw": "{{get_url}}/api/users/login/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{get_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"users",
@@ -581,8 +647,7 @@
 							"\r",
 							"pm.test(\"mensagem de erro: senha nescessário para fazer login \", function () {\r",
 							"    const json = pm.response.json();\r",
-							"    pm.expect(json.user).to.have.property(\"password\");\r",
-							"    pm.expect(json.errors.email[0]).to.eql(\"A password is required to log in\");\r",
+							"    pm.expect(json.errors.password[0]).to.eql(\"This field may not be blank.\");\r",
 							"});\r",
 							""
 						],
@@ -611,15 +676,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/users/login/",
-					"protocol": "http",
+					"raw": "{{get_url}}/api/users/login/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{get_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"users",
@@ -644,6 +704,7 @@
 							"pm.test(\"mensagem de erro relevante\", function () {\r",
 							"    const json = pm.response.json();\r",
 							"    pm.expect(json).to.have.property(\"errors\");\r",
+							"    pm.expect(json.errors.error[0]).to.have.eql(\"A user with this email and password was not found.\");\r",
 							"});\r",
 							""
 						],
@@ -672,15 +733,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/users/login/",
-					"protocol": "http",
+					"raw": "{{get_url}}/api/users/login/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{get_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"users",
@@ -698,14 +754,14 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Código de status 200 Created\", function () {\r",
+							"pm.test(\"Código de status 400 Bad request\", function () {\r",
 							"    pm.response.to.have.status(400);\r",
 							"});\r",
 							"\r",
 							"pm.test(\"mensagem de erro: senha nescessário para fazer login \", function () {\r",
 							"    const json = pm.response.json();\r",
-							"    pm.expect(json.user).to.have.property(\"password\");\r",
-							"    pm.expect(json.errors.email[0]).to.eql(\"A password is required to log in\");\r",
+							"    pm.expect(json.errors).to.have.property(\"password\");\r",
+							"    pm.expect(json.errors.password[0]).to.eql(\"This field is required.\");\r",
 							"});\r",
 							""
 						],
@@ -734,15 +790,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/users/login/",
-					"protocol": "http",
+					"raw": "{{get_url}}/api/users/login/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{get_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"users",
@@ -766,8 +817,8 @@
 							"\r",
 							"pm.test(\"mensagem de erro: email nescessário para fazer login \", function () {\r",
 							"    const json = pm.response.json();\r",
-							"    pm.expect(json.user).to.have.property(\"email\");\r",
-							"    pm.expect(json.errors.email[0]).to.eql(\"An email address is required to log in\");\r",
+							"    pm.expect(json.errors).to.have.property(\"email\");\r",
+							"    pm.expect(json.errors.email[0]).to.eql(\"This field is required.\");\r",
 							"});\r",
 							""
 						],
@@ -796,15 +847,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/users/login/",
-					"protocol": "http",
+					"raw": "{{get_url}}/api/users/login/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{get_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"users",
@@ -864,15 +910,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/user/",
-					"protocol": "http",
+					"raw": "{{patch_url_auth}}/api/user/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{patch_url_auth}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"user",
@@ -880,7 +921,59 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "CT-003 - Atualizar Perfil do Usuário",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTQ2ODgzNzIsImlkIjoyfQ.ofGv-e-4fDetZqRHAL-MHw-e1GNagXlidiPsuVkkByc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"user\": {\r\n    \"username\": \"outroUsuário\",\r\n    \"bio\": \"bio atualizada\",\r\n    \"image\": \"https://pngimg.com/uploads/smiley/smiley_PNG196.png\"\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{patch_url_auth}}/api/user/",
+							"host": [
+								"{{patch_url_auth}}"
+							],
+							"path": [
+								"api",
+								"user",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n  \"user\": {\r\n    \"username\": \"outroUsuário\",\r\n    \"bio\": \"bio atualizada\",\r\n    \"image\": \"https://pngimg.com/uploads/smiley/smiley_PNG196.png\",\r\n    \"token\": \"{{token}}\",\r\n    \"email\": \"{{email}}\"\r\n  }\r\n}\r\n"
+				}
+			]
 		},
 		{
 			"name": "CT-003 - Atualizar Perfil do Usuário somente nome",
@@ -897,6 +990,7 @@
 							"    const json = pm.response.json();\r",
 							"    pm.expect(json.user).to.have.property(\"email\");\r",
 							"    pm.expect(json.user).to.have.property(\"username\");\r",
+							"    pm.expect(json.user.username).to.have.eql(\"novo_user1\")\r",
 							"    pm.expect(json.user).to.have.property(\"token\");\r",
 							"    pm.expect(json.user).to.have.property(\"image\");\r",
 							"});\r",
@@ -929,15 +1023,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/user/",
-					"protocol": "http",
+					"raw": "{{patch_url_auth}}/api/user/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{patch_url_auth}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"user",
@@ -945,7 +1034,59 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "CT-003 - Atualizar Perfil do Usuário somente nome",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzU0NDg1OTE0fQ.5tOdJ-x8o_QsZbarmbyxg1OxmU-lAYq8koDypFpSPWU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"user\": {\r\n    \"username\": \"novo_user1\"\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{patch_url_auth}}/api/user/",
+							"host": [
+								"{{patch_url_auth}}"
+							],
+							"path": [
+								"api",
+								"user",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n  \"user\": {\n    \"username\": \"novo_user1\",\n    \"bio\": \"bio atualizada\",\n    \"image\": \"https://pngimg.com/uploads/smiley/smiley_PNG196.png\",\n    \"email\": \"outroemail@email.com\",\n    \"token\": \"{{token}}\"\n  }\n}\n"
+				}
+			]
 		}
 	],
 	"variable": [

@@ -36,6 +36,11 @@
 				"method": "POST",
 				"header": [
 					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
 						"key": "Authorization",
 						"value": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzU0NDg1OTE0fQ.5tOdJ-x8o_QsZbarmbyxg1OxmU-lAYq8koDypFpSPWU",
 						"type": "text"
@@ -43,7 +48,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"article\":{\r\n    \"title\": \"teste\",\r\n    \"description\": \"A test description\",\r\n    \"body\": \"Test body\",\r\n    \"autor\": \"novo_user1\" \r\n    }\r\n}",
+					"raw": "{\r\n  \"article\":{\r\n    \"title\": \"teste\",\r\n    \"description\": \"A test description\",\r\n    \"body\": \"Test body\",\r\n    \"author\": \"novo_user1\" \r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -51,22 +56,68 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/articles",
-					"protocol": "http",
+					"raw": "{{Post_url}}/api/articles",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{Post_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"articles"
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "CT-007 criar artigo",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzU0NDg1OTE0fQ.5tOdJ-x8o_QsZbarmbyxg1OxmU-lAYq8koDypFpSPWU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"article\":{\r\n    \"title\": \"novo testes de exemplo\",\r\n    \"description\": \"descrição que não vai pro banco\",\r\n    \"body\": \"aqui vai o artigo\",\r\n    \"author\": \"novo_user1\" \r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Post_url}}/api/articles",
+							"host": [
+								"{{Post_url}}"
+							],
+							"path": [
+								"api",
+								"articles"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"article\": {\n        \"title\": \"novo testes de exemplo\",\n        \"description\": \"descrição que não vai pro banco\",\n        \"body\": \"aqui vai o artigo\",\n        \"author\": \"novo_user1\"\n    }\n}"
+				}
+			]
 		},
 		{
 			"name": "CT-008 - Visualizar Artigos",
@@ -102,15 +153,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/articles",
-					"protocol": "http",
+					"raw": "{{get_url}}/api/articles",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{get_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"articles"
@@ -170,15 +216,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/articles/feed/",
-					"protocol": "http",
+					"raw": "{{get_url}}/api/articles/feed/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{get_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"articles",
@@ -213,15 +254,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/articles/teste-zt0yod",
-					"protocol": "http",
+					"raw": "{{get_url}}/api/articles/teste-zt0yod",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{get_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"articles",
@@ -244,6 +280,7 @@
 							"pm.test(\"mensagem: artigo com esse slug não existe'\", function () {\r",
 							"    const json = pm.response.json();\r",
 							"    pm.expect(json).to.have.property(\"errors\");\r",
+							"    pm.expect(json.errors.article).to.have.eql(\"An article with this slug does not exist.\")\r",
 							"});"
 						],
 						"type": "text/javascript",
@@ -255,15 +292,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/articles/teste",
-					"protocol": "http",
+					"raw": "{{get_url}}/api/articles/teste",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{get_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"articles",
@@ -309,7 +341,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"article\":{\r\n    \"title\": \"novo teste\",\r\n    \"description\": \"A new test description\",\r\n    \"body\": \"New Test body\",\r\n    \"autor\": \"novo_user1\" \r\n    }\r\n}",
+					"raw": "{\r\n  \"article\":{\r\n    \"title\": \"novo teste\",\r\n    \"description\": \"A new test description\",\r\n    \"body\": \"New Test body\",\r\n    \"author\": \"novo_user1\" \r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -317,15 +349,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/articles/teste-zt0yod",
-					"protocol": "http",
+					"raw": "{{put_url}}/api/articles/teste-zt0yod",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{put_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"articles",
@@ -333,7 +360,59 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "CT-011 - Atualizar Artigo",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzU0NDg1OTE0fQ.5tOdJ-x8o_QsZbarmbyxg1OxmU-lAYq8koDypFpSPWU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"article\":{\r\n    \"title\": \"novo teste\",\r\n    \"description\": \"A new test description\",\r\n    \"body\": \"New Test body\",\r\n    \"author\": \"novo_user1\" \r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{put_url}}/api/articles/teste-zt0yod",
+							"host": [
+								"{{put_url}}"
+							],
+							"path": [
+								"api",
+								"articles",
+								"teste-zt0yod"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"article\": {\n        \"title\": \"novo teste atualizado mock\",\n        \"description\": \"A new test description (MOCK)\",\n        \"body\": \"New Test body atualizado mock\",\n        \"author\": \"novo_user1\"\n    }\n}"
+				}
+			]
 		},
 		{
 			"name": "CT-011 - Tentar Atualizar Artigo inexistente (negativo)",
@@ -349,6 +428,7 @@
 							"pm.test(\"Mensagem: artigo com esse slug não existe\", function () {\r",
 							"    const json = pm.response.json();\r",
 							"    pm.expect(json).to.have.property(\"errors\");\r",
+							"    pm.expect(json.errors.article).to.have.eql(\"An article with this slug does not exist.\");\r",
 							"   \r",
 							"\r",
 							"});"
@@ -377,15 +457,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/articles/teste-zt0yo",
-					"protocol": "http",
+					"raw": "{{get_url}}/api/articles/teste-zt0yo",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{get_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"articles",
@@ -427,15 +502,10 @@
 					}
 				],
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/articles/teste-zt0yod/favorite/",
-					"protocol": "http",
+					"raw": "{{Post_url}}/api/articles/teste-zt0yod/favorite/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{Post_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"articles",
@@ -445,7 +515,66 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "CT-012 - Favoritar Artigo",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNzU1Mzc0NDI5fQ.sXnIxp5c8sgfKBODWe7Agg0yLfwFqrccoDlSpigsxLQ",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"article\": {\r\n        \"author\": {\r\n            \"username\": \"novo_user1\",\r\n            \"bio\": \"bio atualizada\",\r\n            \"image\": \"https://static.productionready.io/images/smiley-cyrus.jpg\",\r\n            \"following\": true\r\n        },\r\n        \"body\": \"New Test body\",\r\n        \"createdAt\": \"2025-06-17T19:45:39.777098+00:00\",\r\n        \"description\": \"A new test description\",\r\n        \"favorited\": true,\r\n        \"favoritesCount\": 1,\r\n        \"slug\": \"teste-zt0yod\",\r\n        \"tagList\": [],\r\n        \"title\": \"novo teste\",\r\n        \"updatedAt\": \"2025-06-20T21:15:29.565280+00:00\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Post_url}}/api/articles/teste-zt0yod/favorite/",
+							"host": [
+								"{{Post_url}}"
+							],
+							"path": [
+								"api",
+								"articles",
+								"teste-zt0yod",
+								"favorite",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"article\": {\n        \"author\": {\n            \"username\": \"novo_user1\",\n            \"bio\": \"bio atualizada\",\n            \"image\": \"https://static.productionready.io/images/smiley-cyrus.jpg\",\n            \"following\": true\n        },\n        \"body\": \"New Test body\",\n        \"createdAt\": \"2025-06-17T19:45:39.777098+00:00\",\n        \"description\": \"A new test description\",\n        \"favorited\": true,\n        \"favoritesCount\": 1,\n        \"slug\": \"teste-zt0yod\",\n        \"tagList\": [],\n        \"title\": \"novo teste\",\n        \"updatedAt\": \"2025-06-20T21:15:29.565280+00:00\"\n    }\n}"
+				}
+			]
 		},
 		{
 			"name": "CT-012 -Tentar Favoritar Artigo inexistente (negativo)",
@@ -461,6 +590,7 @@
 							"pm.test(\"mensagem: artigo com esse slug não existe\", function () {\r",
 							"    const json = pm.response.json();\r",
 							"    pm.expect(json).to.have.property(\"errors\")\r",
+							"    pm.expect(json.errors.detail).to.have.eql(\"An article with this slug was not found.\")\r",
 							"});"
 						],
 						"type": "text/javascript",
@@ -478,15 +608,10 @@
 					}
 				],
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/articles/teste-zt0yo/favorite/",
-					"protocol": "http",
+					"raw": "{{get_url}}/api/articles/teste-zt0yo/favorite/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{get_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"articles",
@@ -530,15 +655,10 @@
 					}
 				],
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/articles/teste-zt0yod/favorite/",
-					"protocol": "http",
+					"raw": "{{del_url}}/api/articles/teste-zt0yod/favorite/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{del_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"articles",
@@ -548,7 +668,66 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "CT-013 - Desfavoritar Artigo",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNzU1Mzc0NDI5fQ.sXnIxp5c8sgfKBODWe7Agg0yLfwFqrccoDlSpigsxLQ",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"article\": {\r\n        \"author\": {\r\n            \"username\": \"novo_user1\",\r\n            \"bio\": \"bio atualizada\",\r\n            \"image\": \"https://static.productionready.io/images/smiley-cyrus.jpg\",\r\n            \"following\": true\r\n        },\r\n        \"body\": \"New Test body\",\r\n        \"createdAt\": \"2025-06-17T19:45:39.777098+00:00\",\r\n        \"description\": \"A new test description\",\r\n        \"favorited\": false,\r\n        \"favoritesCount\": 1,\r\n        \"slug\": \"teste-zt0yod\",\r\n        \"tagList\": [],\r\n        \"title\": \"novo teste\",\r\n        \"updatedAt\": \"2025-06-20T21:15:29.565280+00:00\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{del_url}}/api/articles/teste-zt0yod/favorite/",
+							"host": [
+								"{{del_url}}"
+							],
+							"path": [
+								"api",
+								"articles",
+								"teste-zt0yod",
+								"favorite",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n    \"article\": {\r\n        \"author\": {\r\n            \"username\": \"novo_user1\",\r\n            \"bio\": \"bio atualizada\",\r\n            \"image\": \"https://static.productionready.io/images/smiley-cyrus.jpg\",\r\n            \"following\": true\r\n        },\r\n        \"body\": \"New Test body\",\r\n        \"createdAt\": \"2025-06-17T19:45:39.777098+00:00\",\r\n        \"description\": \"A new test description\",\r\n        \"favorited\": false,\r\n        \"favoritesCount\": 1,\r\n        \"slug\": \"teste-zt0yod\",\r\n        \"tagList\": [],\r\n        \"title\": \"novo teste\",\r\n        \"updatedAt\": \"2025-06-20T21:15:29.565280+00:00\"\r\n    }\r\n}"
+				}
+			]
 		},
 		{
 			"name": "CT-013 -Tentar Desfavoritar Artigo inexistente (negativo)",
@@ -564,6 +743,7 @@
 							"pm.test(\"Mensagem: artigo com esse slug não encontrado\", function () {\r",
 							"    const json = pm.response.json();\r",
 							"    pm.expect(json).to.have.property(\"errors\")\r",
+							"    pm.expect(json.errors.detail).to.have.eql(\"An article with this slug was not found.\")\r",
 							"});\r",
 							""
 						],
@@ -582,15 +762,10 @@
 					}
 				],
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/articles/teste-zt0yo/favorite/",
-					"protocol": "http",
+					"raw": "{{get_url}}/api/articles/teste-zt0yo/favorite/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{get_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"articles",
@@ -654,15 +829,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/articles/teste-zt0yod/comments",
-					"protocol": "http",
+					"raw": "{{Post_url}}/api/articles/teste-zt0yod/comments",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{Post_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"articles",
@@ -671,7 +841,65 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "CT-014 - Adicionar Comentário a Artigo",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzU0NDg1OTE0fQ.5tOdJ-x8o_QsZbarmbyxg1OxmU-lAYq8koDypFpSPWU",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"comment\": {\r\n    \"body\": \"comentário no artigo\"\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Post_url}}/api/articles/teste-zt0yod/comments",
+							"host": [
+								"{{Post_url}}"
+							],
+							"path": [
+								"api",
+								"articles",
+								"teste-zt0yod",
+								"comments"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n            \"id\": 7,\r\n            \"author\": {\r\n                \"username\": \"novo_user1\",\r\n                \"bio\": \"bio atualizada\",\r\n                \"image\": \"https://static.productionready.io/images/smiley-cyrus.jpg\",\r\n                \"following\": false\r\n            },\r\n            \"body\": \"comentário no artigo\",\r\n            \"createdAt\": \"2025-06-20T21:15:30.000877+00:00\",\r\n            \"updatedAt\": \"2025-06-20T21:15:30.000877+00:00\"\r\n        }"
+				}
+			]
 		},
 		{
 			"name": "CT-014 - Adicionar Comentário a Artigo slug inválido (negativo)",
@@ -687,6 +915,7 @@
 							"pm.test(\"mensagem: artigo com esse slug não existe\"), function () {\r",
 							"    const json = pm.response.json();\r",
 							"    pm.expect(json).to.have.property(\"errors\");\r",
+							"    pm.expect(json.errors.comment).to.have.eql(\"An article with this slug does not exist.\");\r",
 							"};"
 						],
 						"type": "text/javascript",
@@ -718,15 +947,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/articles/teste-zt0yo/comments",
-					"protocol": "http",
+					"raw": "{{get_url}}/api/articles/teste-zt0yo/comments",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{get_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"articles",
@@ -770,15 +994,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/articles/teste-zt0yod/comments",
-					"protocol": "http",
+					"raw": "{{get_url}}/api/articles/teste-zt0yod/comments",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{get_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"articles",
@@ -815,19 +1034,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/articles/teste-zt0y/comments",
-					"protocol": "http",
+					"raw": "{{get_url}}/api/articles/1/comments",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{get_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"articles",
-						"teste-zt0y",
+						"1",
 						"comments"
 					]
 				}
@@ -865,9 +1079,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/api/articles/teste-zt0yod/comments/5",
+					"raw": "{{del_url}}/api/articles/teste-zt0yod/comments/5",
 					"host": [
-						"{{base_url}}"
+						"{{del_url}}"
 					],
 					"path": [
 						"api",
@@ -891,9 +1105,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/api/articles/teste-zt0yod/comments/5",
+							"raw": "{{del_url}}/api/articles/teste-zt0yod/comments/5",
 							"host": [
-								"{{base_url}}"
+								"{{del_url}}"
 							],
 							"path": [
 								"api",
@@ -931,6 +1145,7 @@
 							"pm.test(\"Mensagem de erro, comentário com esse id não existe\", function () {\r",
 							"    const json = pm.response.json();\r",
 							"    pm.expect(json).to.have.property(\"errors\")\r",
+							"    pm.expect(json.errors.comment).to.have.eql(\"A comment with this ID does not exist.\")\r",
 							"});\r",
 							"\r",
 							""
@@ -953,15 +1168,10 @@
 					}
 				],
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/articles/teste-zt0yo/comments/99999",
-					"protocol": "http",
+					"raw": "{{get_url}}/api/articles/teste-zt0yo/comments/99999",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{get_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"articles",
@@ -998,15 +1208,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/tags/",
-					"protocol": "http",
+					"raw": "{{get_url}}/api/tags/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{get_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"tags",

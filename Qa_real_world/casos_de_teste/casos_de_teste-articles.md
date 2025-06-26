@@ -49,7 +49,6 @@ Resultados do teste:
  -Descrição: O sistema se comportou como esperado
  -Observações: Todos os passos foram executados com êxito
 
-evidências:
 
 **CT-008 - Visualizar Artigos**
 
@@ -85,7 +84,6 @@ Resultados do teste:
  -Descrição: O sistema se comportou como esperado
  -Observações: Todos os passos foram executados com êxito
 
-evidências:
 
 **CT-009 - Visualizar Artigo do Feed**
 
@@ -118,7 +116,6 @@ Resultados do teste:
  -Descrição: O sistema se comportou como esperado
  -Observações: Todos os passos foram executados com êxito
 
-evidências:
 
 **CT-010 - Visualizar Artigo por Slug**
 
@@ -155,8 +152,6 @@ Resultados do teste:
  -Status: Sucesso 
  -Descrição: O sistema se comportou como esperado
  -Observações: Todos os passos foram executados com êxito
-
-evidências:
 
 
 **CT-011 - Atualizar Artigo**
@@ -201,8 +196,6 @@ Resultados do teste:
  -Descrição: O sistema se comportou como esperado
  -Observações: Todos os passos foram executados com êxito
 
-evidências:
-
 
 **CT-012 - Favoritar Artigo**
 
@@ -240,7 +233,6 @@ Resultados do teste:
  -Descrição: O sistema se comportou como esperado. 
  -Observações: Todos os passos foram executados com êxito.
 
-evidências:
 
 
 **CT-013 - Desfavoritar Artigo**
@@ -274,12 +266,11 @@ Cenário Alternativo:
 Prioridade: Alto
 
 Teste: Manual
+
 Resultados do teste:
  -Status: Sucesso 
  -Descrição: O sistema se comportou como esperado
  -Observações: Todos os passos foram executados com êxito
-
-evidências:
 
 
 **CT-014 - Adicionar Comentário a Artigo**
@@ -320,8 +311,6 @@ Resultados do teste:
  -Descrição: O sistema se comportou como esperado 
  -Observações: Todos os passos foram executados com êxito
 
-evidências:
-
 
 **CT-015 - Listar Comentários de um Artigo**
 
@@ -354,12 +343,20 @@ Prioridade: Alto
 Teste: Automatizado
 
 Resultados do teste:
- -Status: Sucesso 
- -Descrição: O sistema se comportou como esperado
- -Observações: Todos os passos foram executados com êxito
+ -Status: Sucesso
+ -Descrição: O sistema se comportou como esperado nos testes positivos
+ -Observações: 
+   Falha no cenário alternativo:
+   -    Com um slug inválido, o sistema deveria retornar:
+   -    Código: `404 Not Found` (recurso inexistente) ou `400 Bad Request` (input malformado)
+   -    Mensagem de erro no formato JSON, ex: `{ "error": "Comment not Found" }`
+   -    No entanto, o sistema respondeu com:
+   -    Código: `200 OK`
+   -    Corpo da resposta: `{ "commentsCount": 0, "comments": [] }`
+   -    Impacto: Isso pode mascarar erros e dificultar depuração no frontend.
 
-evidências:
-
+Evidência: 
+![Evidencia de bug](Qa_real_world\Evidências\Bug\bug_ct_015.PNG)
 
 **CT-016 - Remover Comentário**
 
@@ -398,8 +395,6 @@ Resultados do teste:
  -Descrição: O sistema se comportou como esperado
  -Observações: Todos os passos foram executados com êxito
 
-evidências:
-
 
 **CT-017 - Listar Tags Disponíveis**
 
@@ -437,4 +432,3 @@ Resultados do teste:
  -Descrição: O sistema se comportou como esperado
  -Observações: Todos os passos foram executados com êxito
 
-evidências:

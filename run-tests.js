@@ -1,4 +1,7 @@
 const newman = require('newman');
+const path = require('path');
+
+const environmentPath = path.join(__dirname, 'url_mock.postman_environment.json');
 
 const collections = [
   'D:/projetos QA/RealWorld Backend Test/Qa_real_world/Postman/articles.postman_collection.json',
@@ -9,6 +12,7 @@ const collections = [
 collections.forEach((collectionPath) => {
   newman.run({
     collection: require(collectionPath),
+    environment: require(environmentPath),
     reporters: ['cli', 'htmlextra'],
     reporter: {
       htmlextra: {
