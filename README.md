@@ -158,16 +158,16 @@ Funcionalidades incluídas:
 
 ## Como Clonar e Executar
 
-1. Clone o repositório
+1. Clone o repositório:
 bash
-git clone https://github.com/Meydex/RealWorld-Backend-Qa.git
+`git clone https://github.com/Meydex/RealWorld-Backend-Qa.git`
 
-2. Instale dependências do RealWorld
-pip install -r requirements.txt
+2. Instale dependências do RealWorld:
+`pip install -r requirements.txt`
 
-3. Instale dependências do projeto de testes
-cd Qa_real_world
-npm install
+3. Instale dependências do projeto de testes:
+`cd Qa_real_world`
+`npm install`
 
 **Execução Manual**
 
