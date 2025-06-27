@@ -1,21 +1,10 @@
 import http from 'k6/http';
 import { check, sleep } from 'k6';
+import users from './users.js';
 
 
-const users = [
-  { email: 'testuser_1_1750976474177@gmail.com', password: '123456789', username: 'testuser_1_1750976474177' },
-  { email: 'testuser_9_1750976474177@gmail.com', password: '123456789', username: 'testuser_9_1750976474177' },
-  { email: 'testuser_4_1750976474177@gmail.com', password: '123456789', username: 'testuser_4_1750976474177' },
-  { email: 'testuser_8_1750976474177@gmail.com', password: '123456789', username: 'testuser_8_1750976474177' },
-  { email: 'testuser_3_1750976474177@gmail.com', password: '123456789', username: 'testuser_3_1750976474177' },
-  { email: 'testuser_2_1750976474177@gmail.com', password: '123456789', username: 'testuser_2_1750976474177' },
-  { email: 'testuser_7_1750976474177@gmail.com', password: '123456789', username: 'testuser_7_1750976474177' },
-  { email: 'testuser_5_1750976474177@gmail.com', password: '123456789', username: 'testuser_5_1750976474177' },
-  { email: 'testuser_6_1750976474177@gmail.com', password: '123456789', username: 'testuser_6_1750976474177' },
-  { email: 'testuser_10_1750976474177@gmail.com', password: '123456789', username: 'testuser_10_1750976474177' },     
- 
-
-];
+console.log("=== USERS ===");
+console.log(JSON.stringify(users, null, 2));
 
 function getUser(vuId) {
   return users[(vuId - 1) % users.length];

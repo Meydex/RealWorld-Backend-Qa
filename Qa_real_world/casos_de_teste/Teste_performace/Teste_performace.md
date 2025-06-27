@@ -98,3 +98,7 @@ Resultado Esperado:
 **Recomendações:**
 - Revisar o controle transacional do endpoint de follow/unfollow
 - Realizar testes adicionais com ambiente de banco de dados transacional (PostgreSQL ou MySQL), pois o SQLite pode sofrer mais com concorrência
+
+Evidência:
+![Evidência de bug 500](Qa_real_world\Evidências\Bug\erro_500_teste_de_carga.JPG)
+![Evidência de bug carga](Qa_real_world\Evidências\Bug\teste_de_carga.JPG)

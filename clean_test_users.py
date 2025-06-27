@@ -7,9 +7,9 @@ def clean_test_users(db_path):
         # Ajuste o nome da tabela e coluna conforme seu banco real
         cursor.execute("DELETE FROM authentication_user WHERE username LIKE 'testuser_%';")
         print("Usuários de teste removidos com sucesso.")
-        cursor.execute("DELETE FROM articles_article WHERE created_at LIKE '2025-06-26%';")
+        cursor.execute("DELETE FROM articles_article WHERE body LIKE 'Updated body';")
         print("artigos de teste removidos com sucesso.")
-        cursor.execute("DELETE FROM profiles_profile WHERE created_at LIKE '2025-06-26%';")
+        cursor.execute("DELETE FROM profiles_profile WHERE created_at LIKE '2025-06-27%';")
         print("perfils de teste removidos com sucesso.")
         conn.commit()
         

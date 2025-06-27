@@ -36,8 +36,10 @@
         Execução da API: Localhost (127.0.0.1:8000)
     - Ferramentas:
          K6
+         K6 html reporter
          Markdown
          Postman
+         Newman
          Vs code
          Git bash
 

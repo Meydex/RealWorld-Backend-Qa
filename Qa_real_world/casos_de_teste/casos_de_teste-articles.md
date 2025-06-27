@@ -357,6 +357,7 @@ Resultados do teste:
 
 Evidência: 
 ![Evidencia de bug](Qa_real_world\Evidências\Bug\bug_ct_015.PNG)
+![Evidencia de bug](Qa_real_world\Evidências\Bug\Teste_Newman_articles.JPG)
 
 **CT-016 - Remover Comentário**
 
