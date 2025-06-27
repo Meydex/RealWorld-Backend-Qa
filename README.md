@@ -133,23 +133,26 @@ Funcionalidades incluídas:
 ## 📸 Prints dos Testes
 
 - **Prints Newman**  
-    ![Print Newman](Qa_real_world/Evidências/Prints/teste_newman_01.png)
+    ![Print Newman](Qa_real_world/Evidências/print/Teste_Newman_articles.JPG)
+    ![Print Newman](Qa_real_world/Evidências/print/Teste_Newman_authentication.JPG)
+    ![Print Newman](Qa_real_world/Evidências/print/Teste_Newman_profiles.JPG)
 
 - **Prints k6**  
-    ![Print K6](Qa_real_world/Evidências/Prints/teste_k6_01.png)
+    ![Print K6](Qa_real_world/Evidências/print/teste_de_carga.JPG)
+    ![Print K6](Qa_real_world/Evidências/print/teste_de_fluxo.PNG)
 
 ---
 
 ## 🎥 GIFs de Execução
 
 - **Execução Newman**  
-    ![GIF Newman](Qa_real_world/Evidências/GIF/newman_execucao.gif)
+    ![GIF Newman](Qa_real_world/Evidências/gif/teste_newman.gif)
 
 - **Execução k6 (carga)**  
-    ![GIF k6](Qa_real_world/Evidências/GIF/k6_execucao.gif)
+    ![GIF k6](Qa_real_world/Evidências/gif/teste_de_carga.gif)
 
 - **Execução fluxo completo**  
-    ![GIF fluxo completo](Qa_real_world/Evidências/GIF/fluxo_geral.gif)
+    ![GIF fluxo completo](Qa_real_world/Evidências/gif/teste_de_fluxo.gif)
 
 ---
 
@@ -157,7 +160,7 @@ Funcionalidades incluídas:
 
 1. Clone o repositório
 bash
-git clone https://github.com/SEU-USUARIO/realworld-pipeline-qa.git
+git clone https://github.com/Meydex/RealWorld-Backend-Qa.git
 
 2. Instale dependências do RealWorld
 pip install -r requirements.txt
