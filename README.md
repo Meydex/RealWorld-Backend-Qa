@@ -138,8 +138,8 @@ Funcionalidades incluídas:
     ![Print Newman](Qa_real_world/Evidências/print/Teste_Newman_profiles.JPG)
 
 - **Prints k6**  
-    ![Print K6](Qa_real_world/Evidências/print/teste_de_carga.JPG)
-    ![Print K6](Qa_real_world/Evidências/print/teste_de_fluxo.PNG)
+    ![Print K6 carga](Qa_real_world/Evidências/print/teste_de_carga.JPG)
+    ![Print K6 fluxo](Qa_real_world/Evidências/print/teste_fluxo.PNG)
 
 ---
 
