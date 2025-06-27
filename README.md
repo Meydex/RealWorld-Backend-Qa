@@ -1,4 +1,4 @@
-# RealWorld - Automação e Pipeline de Testes
+# RealWorld - Testes de API e Performace
 
 A aplicação consiste em um sistema de blog inspirado no [RealWorld](https://github.com/gothinkster/realworld), que permite aos usuários ler, publicar, favoritar e comentar artigos, bem como seguir outros perfis.
 
