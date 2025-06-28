@@ -25,7 +25,7 @@ A aplicação consiste em um sistema de blog inspirado no [RealWorld](https://gi
 | Backend             | Django, SQLite                    |
 | Testes API          | Postman, Newman                   |
 | Testes performance  | k6, k6-html-reporter              |
-| CI/CD               | GitHub Actions                    |
+| End-to-end          | Cypress                           |
 | Gerenciamento       | VS Code, Git Bash                 |
 | Documentação        | Markdown                          |
 
